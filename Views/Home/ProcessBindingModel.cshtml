@@ -1,0 +1,40 @@
+﻿@{
+    ViewData["Title"] = "ProcessBindingModel";
+    bool isResultDisplayed = !string.IsNullOrEmpty(@Model.Result); 
+}
+@model Value
+<div class="UMcount">
+<main class="main">
+        @if (!isResultDisplayed)
+        {
+            <h1>ProcessBindingModel</h1>
+
+            <form asp-action="ProcessBindingModel" method="post">
+                <div class="form-group">
+
+                    @Html.TextBox("Num1",  @Model.Result ?? "", new { @class = "form-control"})
+                </div>
+                <div class="form-groupoper">
+
+                    <select name="Operation" class="form-controll">
+                        <option value="+" selected="@(Model.Operation == "+")">+</option>
+                        <option value="-" selected="@(Model.Operation == "-")">-</option>
+                        <option value="*" selected="@(Model.Operation == "*")">*</option>
+                        <option value="/" selected="@(Model.Operation == "/")">/</option>
+                    </select>
+                </div>
+                <div class="form-group">
+
+                    @Html.TextBox("Num2", @Model.Result ?? "", new { @class = "form-control"})
+                </div>
+                <button type="submit" class="btn btn-primary mt-3">Submit</button>
+            </form>
+        }
+else{
+            <div class = "result">
+                <h1>Result</h1>
+                @Model.Result
+            </div>
+}
+</main>
+</div>

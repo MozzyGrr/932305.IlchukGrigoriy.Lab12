@@ -1,0 +1,38 @@
+﻿@{
+    ViewData["Title"] = "ProcessBindingParameters";
+    bool isResultDisplayed = !string.IsNullOrEmpty(ViewBag.Result);
+}
+<div class="UMcount">
+<main class="mainmodel">
+        @if (!isResultDisplayed)
+        {
+            <h1>ProcessBindingParameters</h1>
+
+            <form asp-action="ProcessBindingParameters" method="post">
+                <div class="form-group">
+
+                    @Html.TextBox("Num1", @ViewData["Result"] ?? "", new { @class = "form-control"})
+                </div>
+                <div class="form-groupoper">
+                    <select name="Operation" class="form-controll">
+                        <option value="+" selected="@(ViewBag.Operation == "+")">+</option>
+                        <option value="-" selected="@(ViewBag.Operation == "-")">-</option>
+                        <option value="*" selected="@(ViewBag.Operation == "*")">*</option>
+                        <option value="/" selected="@(ViewBag.Operation == "/")">/</option>
+                    </select>
+                </div>
+                <div class="form-group">
+
+                    @Html.TextBox("Num2", @ViewData["Result"] ?? "", new { @class = "form-control"})
+                </div>
+                <button type="submit" class="btn btn-primary mt-3">Submit</button>
+            </form>
+        }
+else{
+            <div class = "result">
+                <h1>Result</h1>
+                @ViewBag.Result
+            </div>
+}
+</main>
+</div>
